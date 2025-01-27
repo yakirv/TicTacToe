@@ -26,6 +26,8 @@ let gameBoard = [
 
 (function marker()
 {   
+    const playerOne = document.getElementById('player-one');
+    const playerTwo = document.getElementById('player-two');
     const gameBoardContainer = document.getElementById('game-board');
     const boardChildren = gameBoardContainer.children;
     let turnStatus = true;
@@ -40,35 +42,46 @@ let gameBoard = [
               {
                 if (turnStatus)
                      {
+                    playerOne.style.backgroundColor ='white';
+                    playerTwo.style.backgroundColor ='#7ED4AD';
                     element.textContent= 'X'; 
                     gameBoard[rawIndex][columnIndex] =  'X';
                     if (checkWin())
                          {  
                             const message = document.getElementById('message');
                             message.textContent = 'PLAYER ONE WIN';
+                            playerOne.style.backgroundColor ='white';
+                            playerTwo.style.backgroundColor ='white';
                          }
                          const isTie= checktie(boardChildren);
                          if(isTie)
                         {
                         message.textContent = 'Its a TIE'; 
+                        playerOne.style.backgroundColor ='white';
+                        playerTwo.style.backgroundColor ='white';
                          }
                       turnStatus=false;
                     }
                     if ( !turnStatus && element.textContent != 'X' )
                         {
-
+                        playerOne.style.backgroundColor ='#7ED4AD';
+                        playerTwo.style.backgroundColor ='white'; 
                        element.textContent = 'O' ; 
                        gameBoard[rawIndex][columnIndex] =  'O';
-                       playerTwoTurn = false;
+                     
                        if (checkWin())
                             {  
                                const message = document.getElementById('message');
                                message.textContent = 'PLAYER Two WIN';
+                               playerOne.style.backgroundColor ='white';
+                               playerTwo.style.backgroundColor ='white'; 
                             }
                             const isTie= checktie(boardChildren);
                             if(isTie)
                            {
-                           message.textContent = 'Its a TIE'; 
+                           message.textContent = 'Its a TIE';
+                           playerOne.style.backgroundColor ='white';
+                           playerTwo.style.backgroundColor ='white'; 
                             }    
                         turnStatus =true;
                        }
@@ -115,10 +128,31 @@ function checktie(cells)
     
         if (textContent === "")
             { 
-          return false;ately
+          return false;
               }
       }
       return true; 
 }
 
 
+(function resetGame()
+{
+    const playerOne = document.getElementById('player-one');
+    const playerTwo = document.getElementById('player-two');
+    const resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener('click', ()=>{
+    console.log('Reset Button Clicked');
+    const gameBoardContainer = document.getElementById('game-board');
+    const boardChildren = gameBoardContainer.children;
+    for (let i = 0; i < boardChildren.length; i++) {
+        const element = boardChildren[i];
+        element.textContent = '';
+        gameBoard[0]=['','',''];
+        gameBoard[1]=['','',''];
+        gameBoard[2]=['','',''];
+        message.textContent = '';
+        playerOne.style.backgroundColor ='white';
+        playerTwo.style.backgroundColor ='white'; 
+    }   
+    })
+})()
