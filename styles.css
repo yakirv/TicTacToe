@@ -74,6 +74,7 @@ body
 #result-message
 {
     height: 50vh;
+    border-radius: 30px;
 }
 #message-container
 {
@@ -96,5 +97,5 @@ body
 }
 #result-message::backdrop
 {
-    background-color:rgba(71, 66, 66, 0.2);
+    background-color:rgba(71, 66, 66, 0.8);
 }
