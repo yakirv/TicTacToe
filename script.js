@@ -84,7 +84,7 @@ let listeners = [];
                        if (checkWin())
                             {  
                                const message = document.getElementById('message');
-                               message.textContent = 'Payer Two Win';
+                               message.textContent = 'Player Two Win';
                                playerOne.style.backgroundColor ='white';
                                playerTwo.style.backgroundColor ='white'; 
                                disableBoard(boardChildren);

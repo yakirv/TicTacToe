@@ -3,7 +3,7 @@ body
     height: 90vh;
     display: grid;
     grid-template-columns: repeat(5 ,1fr);
-    grid-template-rows: 100px 90px 500px 90px;
+    grid-template-rows: 100px 90px 500px 100px;
     font-family: sans-serif;
 }
 #header
@@ -34,7 +34,7 @@ body
     width: 500px;
     height: 500px;
     background-color: black;
-    margin-left: 30%;
+    margin-left: 30vh;
     grid-column: 2 / 4;
     display: grid;
     grid-template-columns: repeat(3,1fr);
