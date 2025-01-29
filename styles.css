@@ -5,6 +5,7 @@ body
     grid-template-columns: repeat(5 ,1fr);
     grid-template-rows: 100px 90px 500px 100px;
     font-family: sans-serif;
+    gap: 2vh;
 }
 #header
 {
@@ -49,32 +50,26 @@ body
     font-family: sans-serif;
     cursor:pointer
 }
-.messages
+
+
+.reset-btn
 {
-    grid-row: 4 /5;
-    grid-column: 3 / span 1;
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-    flex-direction: column-reverse;
-    margin-top: 2em;
-}
-#message
-{
-    width: 10em;
-}
-.messages button
-{
-    padding: 20px 40px;
+    width: 50%;
+    height: 50%;
     background-color: #16C47F;
     font-weight: 800;
     border-radius: 20px;
+    grid-row: 4 / 5;
+    grid-column: 3/ 4;
+    margin-left: 7%;
+    
     
 }
 #result-message
 {
     height: 50vh;
     border-radius: 30px;
+    border-style: none;
 }
 #message-container
 {
@@ -86,6 +81,7 @@ body
 #message
 {
     text-align: center;
+    width: 10em;
 }
 #result-message button
 {
