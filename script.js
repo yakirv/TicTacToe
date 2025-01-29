@@ -5,6 +5,7 @@ let gameBoard = [
 ];
 
 let listeners = [];
+let players = [];
 
 /* (function createBoard()
     {
@@ -32,9 +33,10 @@ let listeners = [];
     const successMessage = document.getElementById('result-message');
     const gameBoardContainer = document.getElementById('game-board');
     const boardChildren = gameBoardContainer.children;
-    playerOne.style.backgroundColor ='#7ED4AD';
+   
     let turnStatus = true;
-    
+    startGame()
+   
     for (let i = 0; i < boardChildren.length; i++) {
         const element = boardChildren[i];
         const rawIndex = element.getAttribute('rawIndex');
@@ -54,7 +56,7 @@ let listeners = [];
                     if (checkWin(element))
                          {  
                             const message = document.getElementById('message');
-                            message.textContent = 'Player ONE Win';
+                            message.textContent = `${players[0]} Won!`;
                             playerOne.style.backgroundColor ='white';
                             playerTwo.style.backgroundColor ='white';
                             disableBoard(boardChildren);
@@ -84,7 +86,7 @@ let listeners = [];
                        if (checkWin())
                             {  
                                const message = document.getElementById('message');
-                               message.textContent = 'Player Two Win';
+                               message.textContent = `${players[1]} Won!`;
                                playerOne.style.backgroundColor ='white';
                                playerTwo.style.backgroundColor ='white'; 
                                disableBoard(boardChildren);
@@ -113,8 +115,51 @@ let listeners = [];
            
                
     }
-         
+        
  })();
+
+ function startGame()
+ {
+    const newGamePopup = document.getElementById('start-game-message');
+    const newGameform = document.getElementById('playerForm');
+    const playerOne = document.getElementById('player-one');
+    const playerTwo = document.getElementById('player-two');
+    const startBtn = document.getElementById('startBtn');
+    newGamePopup.showModal()
+ 
+  
+        startBtn.addEventListener('click', (event)=>
+            {
+                event.preventDefault();
+                const formData = new FormData(newGameform);
+                const playerOneName =formData.get('player-one-name');
+                const playertwoName =formData.get('player-two-name');
+                if (playerOneName != '' & playertwoName != '')
+                {
+                    playerOne.textContent = playerOneName;
+                    playerTwo.textContent = playertwoName;
+                    playerOne.style.backgroundColor ='#7ED4AD';
+                    players.push(playerOneName,playertwoName);
+                    newGamePopup.close();
+                    newGameform.reset(); 
+                }
+                else
+                {
+                    playerOne.textContent = 'Player One';
+                    playerTwo.textContent = 'Player Two';
+                    playerOne.style.backgroundColor ='#7ED4AD';
+                    players.push('Player One','Player Two');
+                    newGamePopup.close();
+                    newGameform.reset();
+                    
+                }
+                      
+            },{ once: true });
+    
+ 
+ }
+
+
   function closeMessage(successMessage)
   {
     const closeBtn = document.getElementById('close-message');
@@ -178,6 +223,13 @@ function checktie(cells)
     
     resetBtn.addEventListener('click', ()=>{
     console.log('Reset Button Clicked');
+    clenBoard()
+    })
+})();
+function clenBoard()
+{
+    const playerOne = document.getElementById('player-one');
+    const playerTwo = document.getElementById('player-two');
     const gameBoardContainer = document.getElementById('game-board');
     const boardChildren = gameBoardContainer.children;
     for (let i = 0; i < boardChildren.length; i++) {
@@ -194,5 +246,18 @@ function checktie(cells)
                  boardChildren[index].classList  = '';
             }
     }   
-    })
+}
+(function newGame()
+{
+    const newBtn = document.getElementById('newGame');
+    
+    newBtn.addEventListener('click', ()=>{
+        players = [];
+        startGame();
+        clenBoard();
+        console.log('New button clicked')})
 })()
+
+
+
+

@@ -51,16 +51,21 @@ body
     cursor:pointer
 }
 
-
-.reset-btn
+.actions
+{
+    grid-row: 4 / 5;
+    grid-column: 2/ 4;
+    display: flex;
+    margin-left: 20% ;
+    
+}
+.actions button
 {
     width: 50%;
     height: 50%;
     background-color: #16C47F;
     font-weight: 800;
     border-radius: 20px;
-    grid-row: 4 / 5;
-    grid-column: 3/ 4;
     margin-left: 7%;
     
     
@@ -70,6 +75,40 @@ body
     height: 50vh;
     border-radius: 30px;
     border-style: none;
+}
+
+#start-game-message{
+    height: 50vh;
+    border-radius: 30px;
+    border-style: none;
+}
+.start-popup-container
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+#playerForm
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    font-weight: 700;
+}
+#playerForm input
+{
+    margin-bottom: 3em;
+    border-radius: 30px;
+    border: 1px solid black;
+    height: 2em;
+}
+#startBtn
+{
+    padding: 20px 40px;
+    background-color: #16C47F;
+    font-weight: 800;
+    border-radius: 20px;
+    
 }
 #message-container
 {
