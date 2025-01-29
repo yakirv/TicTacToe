@@ -4,6 +4,7 @@ let gameBoard = [
     ['','','']
 ];
 
+let listeners = [];
 
 /* (function createBoard()
     {
@@ -28,8 +29,10 @@ let gameBoard = [
 {   
     const playerOne = document.getElementById('player-one');
     const playerTwo = document.getElementById('player-two');
+    const successMessage = document.getElementById('result-message');
     const gameBoardContainer = document.getElementById('game-board');
     const boardChildren = gameBoardContainer.children;
+    playerOne.style.backgroundColor ='#7ED4AD';
     let turnStatus = true;
     
     for (let i = 0; i < boardChildren.length; i++) {
@@ -37,7 +40,9 @@ let gameBoard = [
         const rawIndex = element.getAttribute('rawIndex');
         const columnIndex = element.getAttribute('columnIndex');
         
+        (() =>{listeners.push({type: 'click', listener: `click-cell`})})()
         element.addEventListener('click', ()=>{
+            
             if (element.textContent == '')
               {
                 if (turnStatus)
@@ -46,19 +51,26 @@ let gameBoard = [
                     playerTwo.style.backgroundColor ='#7ED4AD';
                     element.textContent= 'X'; 
                     gameBoard[rawIndex][columnIndex] =  'X';
-                    if (checkWin())
+                    if (checkWin(element))
                          {  
                             const message = document.getElementById('message');
-                            message.textContent = 'PLAYER ONE WIN';
+                            message.textContent = 'Player ONE Win';
                             playerOne.style.backgroundColor ='white';
                             playerTwo.style.backgroundColor ='white';
+                            disableBoard(boardChildren);
+                             successMessage.showModal(); 
+                            closeMessage(successMessage);
+                           
                          }
                          const isTie= checktie(boardChildren);
                          if(isTie)
                         {
-                        message.textContent = 'Its a TIE'; 
+                        message.textContent = `It's a TIE !`; 
                         playerOne.style.backgroundColor ='white';
                         playerTwo.style.backgroundColor ='white';
+                        disableBoard(boardChildren);
+                        successMessage.showModal();
+                        closeMessage(successMessage);
                          }
                       turnStatus=false;
                     }
@@ -72,29 +84,52 @@ let gameBoard = [
                        if (checkWin())
                             {  
                                const message = document.getElementById('message');
-                               message.textContent = 'PLAYER Two WIN';
+                               message.textContent = 'Player Two Win';
                                playerOne.style.backgroundColor ='white';
                                playerTwo.style.backgroundColor ='white'; 
+                               disableBoard(boardChildren);
+                               successMessage.showModal();
+                               closeMessage(successMessage);
                             }
                             const isTie= checktie(boardChildren);
                             if(isTie)
                            {
-                           message.textContent = 'Its a TIE';
+                           message.textContent = `It's a TIE !`;
                            playerOne.style.backgroundColor ='white';
                            playerTwo.style.backgroundColor ='white'; 
+                           disableBoard(boardChildren);
+                           successMessage.showModal();
+                           closeMessage(successMessage);
                             }    
                         turnStatus =true;
                        }
                 
+                   
                }
-            
-            })        
+               
+            }) 
+       
+              
+           
+               
     }
          
  })();
-  
+  function closeMessage(successMessage)
+  {
+    const closeBtn = document.getElementById('close-message');
+    closeBtn.addEventListener('click',()=>{ successMessage.close();})
+   
+  }
 
-
+function disableBoard(boardElement)
+{   
+    this.boardElement =boardElement;
+    for (let index = 0; index < boardElement.length; index++)
+        {
+            boardElement[index].classList  = 'no-click';
+        }
+}
 
 function checkWin()
 {
@@ -140,6 +175,7 @@ function checktie(cells)
     const playerOne = document.getElementById('player-one');
     const playerTwo = document.getElementById('player-two');
     const resetBtn = document.getElementById('reset');
+    
     resetBtn.addEventListener('click', ()=>{
     console.log('Reset Button Clicked');
     const gameBoardContainer = document.getElementById('game-board');
@@ -151,8 +187,12 @@ function checktie(cells)
         gameBoard[1]=['','',''];
         gameBoard[2]=['','',''];
         message.textContent = '';
-        playerOne.style.backgroundColor ='white';
+        playerOne.style.backgroundColor ='#7ED4AD';
         playerTwo.style.backgroundColor ='white'; 
+        for (let index = 0; index < boardChildren.length; index++)
+            {
+                 boardChildren[index].classList  = '';
+            }
     }   
     })
 })()

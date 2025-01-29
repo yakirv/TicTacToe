@@ -13,20 +13,25 @@
         <h2 id="player-two">Player Two</h2>
     </div>
     <div id="game-board">
-        <div class="cell1" rawIndex = "0" columnIndex="0"></div>
-        <div class="cell2" rawIndex = "0" columnIndex="1"></div>
-        <div class="cell3" rawIndex = "0" columnIndex="2"></div>
-        <div class="cell4" rawIndex = "1" columnIndex="0"></div>
-        <div class="cell5" rawIndex = "1" columnIndex="1"></div>
-        <div class="cell6" rawIndex = "1" columnIndex="2"></div>
-        <div class="cell7" rawIndex = "2" columnIndex="0"></div>
-        <div class="cell8" rawIndex = "2" columnIndex="1"></div>
-        <div class="cell9" rawIndex = "2" columnIndex="2"></div>
+        <div id="cell1" rawIndex = "0" columnIndex="0"></div>
+        <div id="cell2" rawIndex = "0" columnIndex="1"></div>
+        <div id="cell3" rawIndex = "0" columnIndex="2"></div>
+        <div id="cell4" rawIndex = "1" columnIndex="0"></div>
+        <div id="cell5" rawIndex = "1" columnIndex="1"></div>
+        <div id="cell6" rawIndex = "1" columnIndex="2"></div>
+        <div id="cell7" rawIndex = "2" columnIndex="0"></div>
+        <div id="cell8" rawIndex = "2" columnIndex="1"></div>
+        <div id="cell9" rawIndex = "2" columnIndex="2"></div>
     </div>
     <div class="messages">
-        <h1 id="message">yow win</h1>
-        <button id="reset">Reset</button>
+        <button class="reset-btn" id="reset">Reset</button>
     </div>
+    <dialog id="result-message">
+        <div id="message-container">
+            <h1 id="message"></h1>
+            <button id="close-message">Close</button>
+        </div>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>
