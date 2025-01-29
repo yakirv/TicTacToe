@@ -9,8 +9,8 @@
 <body>
     <h1 id="header">Tic Tac Toe</h1>
     <div class="players">
-        <h2 id="player-one">Player one</h2>
-        <h2 id="player-two">Player Two</h2>
+        <h2 id="player-one"></h2>
+        <h2 id="player-two"></h2>
     </div>
     <div id="game-board">
         <div id="cell1" rawIndex = "0" columnIndex="0"></div>
@@ -23,8 +23,23 @@
         <div id="cell8" rawIndex = "2" columnIndex="1"></div>
         <div id="cell9" rawIndex = "2" columnIndex="2"></div>
     </div>
-    <button class="reset-btn" id="reset">Reset</button>
 
+    <div class="actions">
+        <button class="new-game-btn" id="newGame">New Players</button>
+        <button class="reset-btn" id="reset">Reset</button>
+    </div>
+    <dialog id="start-game-message">
+        <div class="start-popup-container">
+            <h1>Enter players names</h1>
+            <form action="dialog" id="playerForm">
+                <label for="player-one-name">Player one name:</label>
+                <input type="text"  id="player-one-name" name="player-one-name">
+                <label for="player-two-name">Player two name:</label>
+                <input type="text" id="player-two-name" name="player-two-name">
+                <button id="startBtn" name="startBtn"  type="submit">Start</button>
+            </form>
+        </div>
+    </dialog>
     <dialog id="result-message">
         <div id="message-container">
             <h1 id="message"></h1>
